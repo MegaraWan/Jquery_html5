@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery</title>
+	<link rel="stylesheet" href="./css/style.css">
+	<style>
+		span{
+			text-transform: capitalize;
+			color: red;
+		}
+	</style>
+	<script src="./js/jquery-3.7.0.js"></script>
+	<script>
+		$(function () {
+			let breads = ['roll','donuts','bagel','ptetzel','croissant']
+
+			$('#checkButton').click(function(){
+				let bread = $('#bread').val().toLowerCase()
+
+				// $.inArray(物件, 陣列)
+				alert($.inArray(bread, breads))  // 傳回 index 值或 -1
+
+				if($.inArray(bread, breads) != -1){
+					$('#feedback').html(`<span>${bread}</span> is available.`)
+				}else{
+					$('#feedback').html(`<span>${bread}</span> is NOT available.`)
+				}
+			})
+		})	
+	</script>
+</head>
+<body>
+	Bread: <input type="text" id="bread">
+	<button id="checkButton">Check bread</button>
+
+	<p id="feedback"></p>
+</body>
+
+</html>

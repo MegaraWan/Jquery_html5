@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery</title>
+    <script src="./js/jquery-3.7.0.js"></script>
+    
+    <script>
+        $(document).ready(function(){
+            // $('input[type="text"]').focus(function(){
+            //     $(this).css('background-color','yellow')
+            // })
+
+            // $(':text').focus().blur()
+            // $(':text').focus(function(){}).blur(function(){})
+            // $(':text').focus(function(){
+
+            // }).blur(function(){
+
+            // })
+
+            $(':text').focus(function(e){
+                console.log(e.target.nodeName);
+                console.log(e.type);
+                console.log(e);
+
+                $(this).css('background-color','yellow')
+            }).blur(function(){
+                $(this).css('backgroundColor','#fff')
+            })
+
+            $('input[type="email"]').focus(function(){
+                $(this).attr('placeholder','')
+            }).blur(function(){
+                if($(this).val() == ''){
+                    $(this).attr('placeholder','example@icloud.com')
+                }
+            })
+
+            // label
+            // $('label').css('text-transform','capitalize').css('width','100px').css('float','left')
+            $('label').css({
+                textTransform: 'capitalize',
+                width: '100px',
+                float: 'left',
+            })
+
+            $(':submit').click(function(){
+                $(this).val('Please wait...')
+            })
+
+            // alert($('textarea').css('font'))    // 13.3333px monospace
+            $('textarea').focus(function(){
+                // $(this).attr({}).css({})
+                $(this).attr({
+                    rows: 5,
+                    cols: 30,
+                }).css({
+                    backgroundColor: 'yellow',
+                    fontSize: 16,
+                })
+            }).blur(function(){
+                $(this).attr({
+                    rows: 2,
+                    cols: 20,
+                }).css({
+                    backgroundColor: '#fff',
+                    fontSize: '13.3333px',
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <p>
+        <label for="name">your name: </label>
+        <input type="text" id="name">
+    </p>
+    <p>
+        <label>the email: </label>
+        <input type="email" placeholder="Your email">
+    </p>
+    <input type="submit" value="click me">
+    <input type="submit" value="click you">
+    <p></p>
+    <textarea></textarea>
+</body>
+</html>

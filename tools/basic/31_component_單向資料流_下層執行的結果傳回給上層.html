@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>  
+</head>
+<body> 
+    <div id="app"> <!-- HTML DOM template -->
+        <button @click="count+=1"> Add </button>
+        <h3>Root ==> {{count}}</h3>
+        <hr>
+
+        <counter :init="count" @child-emit="makeSync"></counter>
+    </div>
+    
+    <script>
+        const App = Vue.createApp({
+            data(){
+                return {
+                    count: 0,
+                }
+            },
+            methods: {
+                makeSync(count){
+                    this.count = count
+                },
+            },
+        })
+
+        App.component('counter',{
+            props: ['init'],
+            data(){
+                return {
+                    count: this.init,
+                }
+            },
+            methods: {
+                sync(){
+                    this.$emit('child-emit',this.count)
+                },
+            },
+            template: `
+                <button @click="count+=1"> Add </button>
+                <button @click="sync"> Sync </button>
+
+                <h3>Counter ==> {{count}}</h3>
+            `,
+        })
+
+        App.mount('#app') 
+    </script>
+</body>
+</html>

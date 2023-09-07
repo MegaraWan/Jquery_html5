@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery</title>
+	<link rel="stylesheet" href="./css/style.css">
+	<script src="./js/jquery-3.7.0.js"></script>
+	<script>
+		$(function () {
+			$('img').css('opacity', 0.5)
+			// $('img:nth-child(1)').css('opacity', 1)
+			// $('img:eq(0)').css('opacity', 1)
+			$('img:first').css('opacity', 1)
+			
+			$('img').mouseover(function(){
+				$(this).fadeTo(500, 1)
+
+				// 其他的: 全部除了你(this)以外
+				$('img').not(this).fadeTo(500, 0.5)
+			})
+		})	
+	</script>
+</head>
+
+<body>
+	<div>
+		<img src="../images/bg008.gif">
+		<img src="../images/bg008.gif">
+		<img src="../images/bg008.gif">
+		<img src="../images/bg008.gif">
+		<img src="../images/bg008.gif">
+		<img src="../images/bg008.gif">
+		<img src="../images/bg008.gif">
+		<img src="../images/bg008.gif">
+		<img src="../images/bg008.gif">
+		<img src="../images/bg008.gif">
+		<img src="../images/bg008.gif">
+		<img src="../images/bg008.gif">
+	</div>
+</body>
+
+</html>

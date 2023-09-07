@@ -1,0 +1,33 @@
+Vue-cli:  Vue command-line interface
+- 工具: 
+  。node.js(LTS): 讓電腦有可以直接執行 JS 的環境
+	   https://nodejs.org/en
+  。npm: node.js 裡面的軟體，會隨著 node.js 自訂安裝，
+         會幫助 node.js 安裝套件
+         https://zh.wikipedia.org/zh-tw/Npm
+  。webpack: 打包轉換的工具，可以將 .vue 檔轉成 .js
+         https://webpack.js.org/
+  。vue-cli: 由於 webpack 的設定比較繁複，
+         所以 Vue 團隊開發這套工具讓大家方便建立 webpack
+
+- 安裝
+  - node.js
+  - vue-cli
+    命令提示字元 (command-line)，將目標移到 C:\VueJS>
+    指令 cd /          (會變成 --> C:\>)
+    指令 cd shared/VueJS  (會變成 --> C:\shared\VueJS>)
+  
+    指令: npm install -g @vue/cli (讓 npm 幫你從雲端下載 vue-cli)
+
+    接下來確定一下有沒有裝好?
+    指令: vue -V  (確認 vue-cli 安裝的版本)
+    指令: vue     (查看 vue 有哪些指令可以用)
+
+    指令: vue create 專案名稱 (建立專案)
+        vue create vue-lessons (假設專案名稱是 vue-lessons)
+        安裝過程選 「Manually select features」自行選擇要安裝甚麼
+        先勾選: Bable, Router, (scss預處理器 和 vuex 自己選)
+        再選 3.* 以及 package.json
+    
+    指令: cd vue-lessons (C:\shared\VueJS\vue-lessons>) 
+    指令: npm run serve (開啟專案)

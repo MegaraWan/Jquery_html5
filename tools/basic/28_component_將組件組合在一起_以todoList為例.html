@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <style>
+        .item{
+            background-color: #abc;
+            font: 18px Calibri;
+            padding: 5px;
+            margin: 5px;
+        }
+        .item:hover{
+            cursor: pointer;
+            background-color: #cba;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@3"></script>  
+</head>
+<body> 
+    <div id="app"> <!-- HTML DOM template -->
+        <todo-list></todo-list>
+    </div>
+    
+    <script>
+        const App = Vue.createApp()
+
+        App.component('todo-list',{
+            data(){
+                return {
+                    tasks: [],
+                }
+            },
+            methods: {
+                addTask(task){
+                    this.tasks.push(task)
+                },
+                removeTask(index){
+                    this.tasks.splice(index, 1)
+                },
+            },
+            template: `
+                <todo-input @abc="addTask"></todo-input>
+                <ol>
+                    <todo-item v-for="(task,index) in tasks" :xyz="task" @click="removeTask(index)"></todo-item>
+                </ol>
+            `,
+        })
+        App.component('todo-input',{
+            data(){
+                return {
+                    task: '',
+                }
+            },
+            methods: {
+                submitData(e){
+                    // e.preventDefault();
+                    
+                    // this.$emit('自訂事件名稱', 傳值1, 傳值2, ...)
+                    this.$emit('abc', this.task)
+                    this.task = ''
+                },
+            },
+            template: `
+                <form @submit.prevent="submitData">
+                    Your task: <input type="text" v-model="task">
+                    <button>Submit</button>
+                </form>
+            `,
+        })
+        App.component('todo-item',{
+            props: ['xyz'],
+            template: `<li class="item">{{xyz}}</li>`,
+        })
+
+
+        App.mount('#app') 
+    </script>
+</body>
+</html>
+<!-- 
+<form>
+    <input type="text">
+    <button>Submit</button>
+</form>
+<ol>
+    <li></li>
+</ol> 
+-->
+
+

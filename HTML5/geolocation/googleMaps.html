@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>google maps javascript api</title>
+    <style>
+        #map{
+            width: 800px;
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    
+    <script src="https://maps.google.com/maps/api/js"></script>
+
+    <script>        
+        function doFirst(){
+            let area = document.getElementById('map')
+            let position = new google.maps.LatLng(24.9575784, 121.2250863)
+            
+            let options = {
+                zoom: 14,
+                center: position,
+                mapTypeId: google.maps.MapTypeId.ROADMAP,
+            }
+
+            let map = new google.maps.Map(area, options)
+
+            let marker = new google.maps.Marker({
+                position,   // position: position,
+                map,        // map: map,
+                // title: '這是哪裡?',
+                // icon: '../../images/foot.gif',
+            })
+            marker.setTitle('tibame')
+            marker.setIcon('../../images/number/dgtp.gif')
+            
+        }        
+        window.addEventListener('load', doFirst)
+    </script>
+</body>
+</html>
+<!-- 
+緯度: 24.9575909
+經度: 121.2250849
+準確度: 14.087 
+
+緯度: 24.9575784
+經度: 121.2250863
+準確度: 13.006 公尺
+
+controls
+layers
+services
+-->

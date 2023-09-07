@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <style>
+        img{
+            width: 220px;
+        }
+        h1{
+            font-size: 18px;
+        }
+        .book{
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            width: 220px;
+            height: 400px;
+            margin: 10px;
+            padding: 10px;
+
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@3"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.js"></script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.js"></script>   
+</head>
+<body> 
+    <div id="app"> <!-- HTML DOM template -->
+        <div v-for="book in books" class="book">
+            <a :href="book.url">
+                <img :src="book.image" alt="">
+            </a>
+            <h1>{{book.title}}</h1>
+            <p>{{book.author}}</p>
+        </div>      
+    </div>
+    <!-- 
+        非同步: 
+        1 JavaScript: XMLHttpRequest 物件
+        2 jQuery: $.get()、$.post()、$.getJSON()、$.ajax()
+        3 ES6: Promise 物件的 then()
+        4 HTML5: Fetch API
+        5 plugin: Axios.js
+        6 ES6 以後: Async, Await
+
+        處理的檔案格式:
+        1 .json
+        2 .xml
+        3 .csv 
+    -->
+    <script>
+        const App = Vue.createApp({
+            data(){ 
+                return {
+                    books: [],
+                }   
+            },
+            methods: {},
+            computed: {}, 
+            mounted() {
+            // jQuery
+                // $.getJSON('./bookData.json').then(function(res){})   // XX
+                // $.getJSON('./bookData.json').then(res => {})
+
+                // $.getJSON('./bookData.json').then(res => console.log(res))
+                // $.getJSON('./bookData.json').then(res => this.books = res)
+
+            // Axios
+                // axios.get('./bookData.json').then(res => console.log(res))
+                // axios.get('./bookData.json').then(res => console.log(res.data))
+                // axios.get('./bookData.json').then(res => this.books = res.data)
+
+            // fetch
+                // fetch('./bookData.json').then(res => console.log(res))
+                // fetch('./bookData.json').then(res => console.log(res.json()))
+                // fetch('./bookData.json').then(res => res.json()).then(res => console.log(res))
+                fetch('./bookData.json').then(res => res.json()).then(res => this.books = res)
+            },
+        })
+        App.mount('#app') 
+    </script>
+</body>
+</html>
+
+

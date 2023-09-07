@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>File read -- image more</title>
+    <script src="./10_new.js"></script>
+    <style>
+        #box{
+            border: 5px dashed #ccc;
+            width: 400px;
+            height: 400px;
+            text-align: center;
+            position: relative;
+        }
+        #add{
+            font: bold 100px Tahoma;
+            color: #ccc;
+
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        #theFile{
+            width: 400px;
+            height: 400px;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <p>不要選太小的圖</p>
+
+    <div id="box">
+        <div id="add">+</div>
+        <input type="file" id="theFile">
+    </div>
+
+    <div style="width: 400px;text-align: center;margin: 10px;">
+        <button style="font-size: large;">Upload(目前還不能 upload)</button>
+    </div>
+</body>
+</html>

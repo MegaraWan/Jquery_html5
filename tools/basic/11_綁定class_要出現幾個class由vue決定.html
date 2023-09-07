@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <style>
+        .theButton{
+            background-color: #abc;
+            border-radius: 3px;
+            font: 18px Calibri;
+            margin: 5px;
+        }
+        .noText{
+            background-color: #ccc;
+        }
+    </style>
+    <script src="https://unpkg.com/vue@3"></script>    
+</head>
+<body>
+    <div id="app">
+        <input v-model="message">
+        
+        <!-- <button class="theButton noText">Click me</button> -->
+        <button :class="btnClass">Click me</button>
+    </div>
+
+    <script>
+        // 綁定class
+        // 1 傳回字串
+        // 2 傳回物件
+        Vue.createApp({
+            data(){     // 變數放這裡
+                return {
+                   message: '',
+                }   
+            },
+            methods: {  // 函數(方法)大部分放這裡
+
+            },
+            computed: { // 函數(方法)也可以放這裡，放在這裡的函數不用傳參數，一定要有傳回值
+                btnClass(){
+                    // 1 傳回字串
+                    // if(this.message.length == 0){
+                    //     return 'theButton noText'
+                    // }else{
+                    //     return 'theButton'
+                    // }
+
+                    // 2 傳回物件
+                    // if(this.message.length == 0){
+                    //     return {
+                    //         theButton: true, 
+                    //         noText: true,
+                    //     }
+                    // }else{
+                    //     return {
+                    //         theButton: true, 
+                    //         noText: false,
+                    //     }
+                    // }
+
+                    // 3 傳回物件(簡易版)
+                    return {
+                        theButton: true, 
+                        noText: this.message.length == 0,
+                    }
+                    
+                },
+            },
+        }).mount('#app') 
+    </script>
+</body>
+</html>

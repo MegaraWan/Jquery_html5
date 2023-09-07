@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>解構賦值: 給預設值 (function default)</title>
+</head>
+<body>
+    <script>
+        // IIFE
+        // const hello = function(){}
+        // const hello = () => {}
+
+        // 1 傳「數值陣列」進去，傳「字串陣列」出來
+        // const NumToStr = numArray => {
+        //     const mapStr = numArray.map(function(item){
+        //         return item + ''
+        //     })
+        //     return mapStr
+        // }
+
+        // console.log(NumToStr([2, 4, 6, 8]));
+
+        // 2 如果沒有傳陣列進去呢?
+        // 沒傳值，numArray 會收到 undefined，而 undefined 不能使用 map()，所以程式壞掉
+        // const NumToStr = numArray => {
+        //     const mapStr = numArray.map(function(item){
+        //         return item + ''
+        //     })
+        //     return mapStr
+        // }
+
+        // console.log(NumToStr());
+
+        // 3 解決 2 的問題: if ... else
+        // const NumToStr = numArray => {
+        //     if(!numArray)   numArray = []
+
+        //     const mapStr = numArray.map(function(item){
+        //         return item + ''
+        //     })
+        //     return mapStr
+        // }
+
+        // console.log(NumToStr());
+
+        // 4 ES6 的解決方式: 給預設值(排除基本錯誤)
+        // const NumToStr = (numArray = []) => {
+        //     const mapStr = numArray.map(function(item){
+        //         return item + ''
+        //     })
+        //     return mapStr
+        // }
+
+        // console.log(NumToStr());
+
+        // 5 修改 4
+        const NumToStr = (numArray = []) => {
+            const mapStr = numArray.map(item => item + '')
+            return mapStr
+        }
+
+        // console.log(NumToStr());
+        console.log(NumToStr([2, 4, 6, 8]));
+
+
+        // Array.filter()
+        // Array.map()
+    </script>
+</body>
+</html>

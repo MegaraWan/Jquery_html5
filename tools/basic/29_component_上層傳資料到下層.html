@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>  
+</head>
+<body> 
+    <div id="app"> <!-- HTML DOM template -->
+        <my-component message="Hello" text="VueJS"></my-component>
+
+        <your-component the-message="Hello" the-text="world"></your-component>
+    </div>
+    
+    <script>
+        const App = Vue.createApp()
+
+        App.component('my-component',{
+            props: ['message','text'],
+            template: `<h1>{{message}} {{text}}!</h1>`,
+        })
+        App.component('your-component',{
+            props: ['the-message','the-text'],  // 可以
+            // props: ['theMessage','theText'],  // 可以
+
+            // template: `<h1>{{the-message}} {{the-text}}!</h1>`, // 不可以這樣寫
+            template: `<h1>{{theMessage}} {{theText}}!</h1>`, // 要用 camelCase 
+        })
+
+        App.mount('#app') 
+    </script>
+</body>
+</html>

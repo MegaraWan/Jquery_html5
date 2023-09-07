@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <!--  CSS 寫法 3: linked -->
+    <!-- <link rel="stylesheet" href="">  -->
+
+    <!--  CSS 寫法 2: embedded -->
+    <!-- 
+    <style>
+        p{
+            text-decoration: underline;
+        }
+    </style> -->
+    <script src="https://unpkg.com/vue@3"></script>    
+</head>
+<body>
+    <div id="app">
+        <!-- CSS 寫法 1: inline -->
+        <!-- <p style="color:red;">ABC</p>   -->
+
+        <button @click="enlarge">Enlarge</button>
+        <button @click="shrink">Shrink</button>
+
+        <!-- <p style="font-size: 16px;">Lorem ipsum dolor sit amet.</p> -->
+        <p :style="changeSize">Lorem ipsum dolor sit amet.</p>
+    </div>
+
+    <script>
+        Vue.createApp({
+            data(){     // 變數放這裡
+                return {
+                   size: 16,
+                }   
+            },
+            methods: {  // 函數(方法)大部分放這裡
+                enlarge(){
+                    this.size += 2
+                },
+                shrink(){
+                    if(this.size > 0){
+                        this.size -= 2
+                    }else{
+                        this.size = 0
+                    }
+                },
+            },
+            computed: { // 函數(方法)也可以放這裡，放在這裡的函數不用傳參數，一定要有傳回值
+                changeSize(){
+                    return {
+                        fontSize: `${this.size}px`,
+                        fontFamily: 'Calibri',
+                        color: 'maroon',
+                        textDecoration: 'underline',
+                    }
+                },
+            },
+        }).mount('#app') 
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+    <link rel="stylesheet" href="./0_style.css">
+    <script src="./08_arc.js"></script>
+    <style>
+        /* 對照04的陰影案例 */
+        /* 第二個字:加上陰影 */
+        .p2{
+            font: bold 70px Tahoma;
+            text-shadow:red 5px 5px 5px;
+        }
+        /* 第三個字:四邊都有陰影 */
+        .p3{
+            color: #fff;
+            font: bold 70px Tahoma;
+            text-shadow:red 0px 0px 10px;
+        }
+
+        /* 第四個字:多重陰影 */
+        .p4{
+            color: #fff;
+            font: bold 70px Tahoma;
+            text-shadow:red 0px 0px 10px, blue 0px 0px 10px;
+        }
+    </style>
+</head>
+<body>
+    <p class="p2">google</p>
+    <p class="p3">google</p>
+    <p class="p4">google</p>
+    <canvas id="canvas" width="1000" height="800"></canvas>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>    
+</head>
+<body>
+    <!-- v-model 的修飾符(modifier)
+        - lazy: trigger when onblur(發生 change 事件)，等待輸入完之後再顯示結果
+        - number: parseInt() | parseFloat() 將字串轉成數值型態
+        - trim: 排除輸入時的前後空白
+    -->
+    <div id="app">
+        Message: <input v-model="message">
+        <h3>{{message}}</h3>
+        Message(lazy): <input v-model.lazy="message">
+        <h3>{{message}}</h3>
+
+        Number: <input v-model.number="num">
+        <h3>{{num + 1}}</h3>
+        Number(lazy): <input v-model.number.lazy="num">
+        <h3>{{num + 1}}</h3>
+
+        Name: <input v-model.trim="name">
+        <h3>/{{name}}/</h3>
+    
+    </div>
+
+    <script>
+        Vue.createApp({
+            data(){     // 變數放這裡
+                return {
+                   message: '',
+                   num: 0,
+                   name: '',
+                }   
+            },
+            methods: {  // 函數(方法)大部分放這裡
+               
+            },
+            computed: { // 函數(方法)也可以放這裡，放在這裡的函數不用傳參數，一定要有傳回值
+                
+            },
+        }).mount('#app') 
+        
+    </script>
+</body>
+</html>

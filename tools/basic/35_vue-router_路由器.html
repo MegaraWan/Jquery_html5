@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>  
+    <script src="https://unpkg.com/vue-router@4"></script>  
+</head>
+<body> 
+    <div id="app"> <!-- HTML DOM template -->
+        <!-- <a href="">Home</a>
+        <a href="">About</a>
+        <a href="">Products</a> -->
+        <p>
+            <router-link to="/">Home</router-link> | 
+            <router-link to="/about">About</router-link> | 
+            <router-link to="/products">Products</router-link>
+        </p>
+        <hr>
+        <router-view></router-view>
+    </div>
+    
+    <script>
+        // 1 define route components
+        // const 組件名稱 = {
+        //     data(){},
+        //     methods: {},
+        //     template: ``,
+        // }
+
+        const Home = {template: `<div><h1> $Home$ </h1></div>`}
+
+        // About 組件
+        // const About = {template: `<div><h1> @About@ </h1></div>`}
+        const About = {
+            template: `
+                <div>
+                    <h1> @About@ </h1>
+                    <hr width="25%" align="left">
+
+                    <router-link to="/about/us">About Us</router-link> | 
+                    <router-link to="/about/others">About Others</router-link>
+
+                    <p>
+                        <router-view/>
+                    </p>                
+                </div>
+            `
+        }
+        const AboutUs = {template: `<h3> about us </h3>`}
+        const AboutOthers = {template: `<h3> about others </h3>`}
+
+        // Products 組件
+        // const Products = {template: `<div><h1> &Products& </h1></div>`}
+
+        const items = {
+            10: 'T-shirt',
+            20: 'iPhone',
+            30: 'iPad Air',
+            40: 'Mac Pro',
+            50: 'HomePod Mini',
+            60: 'AirPods',
+        }
+
+        const Products = {
+            template: `
+                <div>
+                    <h1> &Products& </h1>
+                    <!-- <p>{{$route.params.item}}</p> -->
+
+                    <!-- 要用 computed 處理 -->
+                    <p>{{item}}</p>
+                </div>
+            `,
+            computed: {
+                item(){
+                    // return this.$route.params.item
+                    // return items[this.$route.params.item]  // http://localhost:8080/products/10
+                    return items[this.$route.query.item]  // http://localhost:8080/products?item=10
+                },
+            },
+        }
+
+
+        // 2 define some routes(在哪個路徑下，render 哪一個組件)
+        const routes = [
+            {path: '/', component: Home},
+
+            // {path: '/about', component: About},
+            {
+                path: '/about', 
+                component: About,
+                children: [
+                    {path: 'us', component: AboutUs},
+                    {path: 'others', component: AboutOthers},
+                ],
+            },
+
+            // {path: '/products', component: Products},
+            {
+                // path: '/products', 
+                // path: '/products/:item',    // item 是自訂名稱(ex. sn, id, item...)
+                path: '/products/:item?',    // 加「?」代表後面的路徑可有可無
+
+                component: Products
+            },
+        ]
+
+        // 3 Create the router instance and pass the routes option
+        const router = VueRouter.createRouter({
+            // 4 Provide the history implementation to use.
+            history: VueRouter.createWebHashHistory(),  // 路徑有包含「#」
+            // history: VueRouter.createWebHistory(),
+
+            // routes: [{},{},...],  // 在哪個路徑下，render 哪一個組件
+            // routes: [
+            //     {path: '/', component: Home},
+            //     {path: '/about', component: About},
+            //     {path: '/products', component: Products},
+            // ],
+            routes,
+        })
+
+
+        const App = Vue.createApp({})
+        App.use(router)
+        App.mount('#app') 
+
+        // Vue.createApp({}).use(router).mount('#app')
+    </script>
+</body>
+</html>

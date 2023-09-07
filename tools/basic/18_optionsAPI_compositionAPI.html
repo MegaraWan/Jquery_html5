@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>    
+</head>
+<body>
+    <div id="app"> <!-- HTML DOM template -->
+        <h1>{{message}}</h1>
+        <button @click="action">Click me</button>
+    </div>
+
+    <script>
+        // Options API
+        // Vue.createApp({
+        //     data(){ 
+        //         return {
+        //             message: 'Hello',
+        //             score: 0,
+        //             loading: true,
+        //         }   
+        //     },
+        //     methods: {
+        //         action(){
+        //             alert(`${this.message} Vue!`)
+        //         },
+        //     },
+        // }).mount('#app') 
+
+        // Composition API
+        const {ref} = Vue    // 解構賦值: 將 ref 自 Vue 裡面取出來使用
+        const App = {
+            // setup(){}
+            setup(){
+                let message = ref('Hello')
+                // ※語法: 
+                // ref(): 接受任何資料型態，但無法對陣列和物件進行深層監聽，並且要用「.value」取值
+                // reactive(): 只接受陣列或物件型態，可做深層監聽，不需要使用「.value」取值
+
+                let score = 0
+                let loading = true
+
+                // IIFE
+                const action = () => alert(`${message.value} Vue!`)
+
+                return {
+                    message,  // message: message,
+                    action,
+                }
+            },
+        }
+
+        Vue.createApp(App).mount('#app')
+
+    </script>
+</body>
+</html>
+

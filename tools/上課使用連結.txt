@@ -1,0 +1,13 @@
+雲端硬碟
+https://drive.google.com/drive/folders/13X2T_s3o1eLsUKX7TNd-_uzXxxMmlp6p?usp=drive_link
+
+easing
+https://easings.net/
+
+html2canvas
+https://html2canvas.hertzen.com/
+
+地圖套件
+https://leafletjs.com/
+
+https://github.com/vue-leaflet/vue-leaflet

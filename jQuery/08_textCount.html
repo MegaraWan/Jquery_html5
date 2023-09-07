@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>jQuery</title>
+	<link rel="stylesheet" href="./css/style.css">
+    <script src="./js/jquery-3.7.0.js"></script>
+    <script>
+        $(document).ready(function(){
+			let textMax = $('textarea').attr('maxlength')
+			$('#feedback').html(`<span style="color:red;">${textMax}</span> character remaining.`)
+
+			$('#talk').keyup(function(){
+				let textLength = $(this).val().length
+				$('#feedback').html(`<span style="color:red;">${textMax - textLength}</span> character remaining.`)
+			
+				$('#content').text($(this).val()).css({
+					whiteSpace: 'pre',
+					font: '13.33px monospace',
+				})
+			})
+		})
+    </script>
+</head>
+
+<body>
+	<form>
+		<textarea id="talk" rows="5" cols="25" maxlength="100"></textarea>
+		<p id="feedback"></p>
+		<hr>
+		<p id="content"></p>
+	</form>
+</body>
+
+</html>
+<!--  
+What did you
+    use your 
+
+        computer for?
+-->

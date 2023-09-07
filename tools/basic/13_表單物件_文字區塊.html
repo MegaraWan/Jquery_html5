@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vue</title>
+    <script src="https://unpkg.com/vue@3"></script>    
+</head>
+<body>
+    <div id="app">
+        <!-- 使用 v-model 做雙向綁定 -->
+        <!-- <input type="text" v-model="message">
+        <h3>{{message}}</h3> -->
+
+        <!-- 如果沒有使用 v-model，要如何做雙向綁定? -->
+        <input type="text" @keyup="setMessage" :value="message">
+        <h3>{{message}}</h3>
+
+        <!-- <textarea v-model="message" cols="20" rows="5" @click="action"></textarea> -->
+        <textarea v-model="message" cols="20" rows="5"></textarea>
+        <p :style="setCSS">{{message}}</p>
+    </div>
+
+    <script>
+        Vue.createApp({
+            data(){     // 變數放這裡
+                return {
+                    message: '',
+                }   
+            },
+            methods: {  // 函數(方法)大部分放這裡
+                setMessage(e){
+                    this.message = e.target.value
+                },
+                action(e){
+                    // alert(getComputedStyle(e.target).font)  // 13.3333px monospace
+                },
+            },
+            computed: { // 函數(方法)也可以放這裡，放在這裡的函數不用傳參數，一定要有傳回值
+                setCSS(){
+                    return {
+                        font: '13.3333px monospace',
+                        whiteSpace: 'pre',
+                    }
+                },
+            },
+        }).mount('#app') 
+    </script>
+</body>
+</html>
+
